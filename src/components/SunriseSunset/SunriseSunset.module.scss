@@ -1,0 +1,47 @@
+.sunrise-sunset {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  max-width: 270px;
+  background-color: rgba(181, 226, 250, 0.6);
+
+  .sun-icon {
+    font-size: 5rem;
+    width: 30%;
+    padding: 15px 10px 0px 10px;
+  }
+
+  .sunrise {
+    color: #ffac11;
+  }
+
+  .sunset {
+    color: #ff3700;
+  }
+
+  .sunrise-sunset-time {
+    font-size: 1.2rem;
+    font-weight: 500;
+    flex: 1 1 auto;
+
+    .sunrise-sunset-difference {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: rgb(130, 130, 130);
+    }
+
+    .timezone-disclaimer {
+      font-size: 0.65rem;
+      font-weight: 300;
+      font-style: italic;
+      color: rgb(130, 130, 130);
+    }
+  }
+}

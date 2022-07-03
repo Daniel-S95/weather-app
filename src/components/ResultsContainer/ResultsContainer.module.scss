@@ -1,0 +1,50 @@
+.loading-spinner {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.results-container {
+  width: auto;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+
+  hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    width: 85%;
+  }
+
+  .city-data-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+
+.no-results-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  max-width: 90%;
+  margin: 0 auto;
+
+  * {
+    font-weight: bold;
+    font-size: 1.2rem;
+    align-items: center;
+  }
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}

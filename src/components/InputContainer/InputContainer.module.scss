@@ -1,0 +1,48 @@
+.input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding-bottom: 15px;
+  width: 90%;
+  margin: 0 auto;
+
+  .forecast-button {
+    background-color: #00b4d8;
+    color: white;
+    flex: 1 1 auto;
+  }
+
+  .input-fields {
+    display: flex;
+    justify-content: center;
+    border: 1px solid rgba(100, 182, 197, 0.4);
+    padding: 15px 20px;
+    background-color: #90e0ef;
+    border-radius: 20px 10px;
+    width: 100%;
+    max-width: 400px;
+    gap: 1rem;
+    margin-top: 5px;
+
+    .search-input {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+  }
+}
+
+@media (min-width: 320px) {
+  .input-fields {
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 481px) {
+  .input-fields {
+    flex-direction: row;
+  }
+}
