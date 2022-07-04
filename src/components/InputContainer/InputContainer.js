@@ -3,8 +3,10 @@ import { Button } from '@mui/material';
 import TextField from '@mui/material/TextField/TextField';
 import React, { useEffect, useState } from 'react';
 import styles from './InputContainer.module.scss';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import ThermostatIcon from '@mui/icons-material/Thermostat';
 
-const InputContainer = ({ onSearch }) => {
+const InputContainer = ({ onSearch, locationSearch }) => {
   const [searchCity, setSearchCity] = useState('');
 
   useEffect(() => {
@@ -13,10 +15,25 @@ const InputContainer = ({ onSearch }) => {
 
   const searchHandler = () => {
     document.getElementById('searchInput').blur();
-    document.getElementById('submitButton').blur();
+    document.getElementById('forecastButton').blur();
 
     setSearchCity('');
     onSearch(searchCity);
+  }
+
+  const getGeoLocationData = () => {
+    document.getElementById('locationButton').blur();
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        let lat = position.coords.latitude;
+        let long = position.coords.longitude;
+
+        locationSearch(lat, long);
+      }, () => {
+        locationSearch();
+      });
+    }
   }
 
   return (
@@ -28,7 +45,11 @@ const InputContainer = ({ onSearch }) => {
             onChange={(e) => { setSearchCity(e.target.value) }} onKeyDown={(e) => e.key === 'Enter' && searchHandler()} />
         </div>
 
-        <Button id='submitButton' className={styles['forecast-button']} onClick={searchHandler}>Get Forecast</Button>
+        <Button id='forecastButton' className={styles['forecast-button']}
+          onClick={searchHandler}><ThermostatIcon /> Get Forecast</Button>
+
+        <Button id='locationButton' className={styles['forecast-button']}
+          onClick={getGeoLocationData}><LocationOnIcon /> Location Based Forecast</Button>
       </div>
     </div>
   );

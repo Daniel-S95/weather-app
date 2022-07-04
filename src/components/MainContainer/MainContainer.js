@@ -51,9 +51,36 @@ const MainContainer = () => {
     }
   }
 
+  const getCityName = async (lat, long) => {
+    if (!lat || !long) {
+      setIsSearch(true);
+      setResultsData(null);
+      setErrorMessage('Could not obtain your current location. Please make sure you allow the browser to access it');
+      return;
+    }
+
+    let myApiKey = 'I6qLG1SSf0RRpxlBkYjSCQlIbRIl3ddf';
+
+    try {
+      const response = await axios.get(`https://open.mapquestapi.com/geocoding/v1/reverse?key=${myApiKey}&location=${lat},${long}&includeRoadMetadata=true&includeNearestIntersection=true`);
+
+      let cityName = response.data.results[0].locations[0]?.adminArea5;
+
+      if (cityName) {
+        getWeatherData(cityName);
+      } else {
+        setIsSearch(true);
+        setResultsData(null);
+        setErrorMessage('An error has occurred with obtaining your location. Please try again later');
+      }
+    } catch (e) {
+      console.error(e.message);
+    }
+  }
+
   return (
     <div className={styles['main-container']}>
-      <InputContainer onSearch={getWeatherData} />
+      <InputContainer onSearch={getWeatherData} locationSearch={(lat, long) => { getCityName(lat, long) }} />
 
       {!isSearch &&
         <div className={styles['no-search']}>
